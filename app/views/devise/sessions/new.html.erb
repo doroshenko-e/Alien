@@ -1,25 +1,27 @@
-<div class="col-sm-offset-4 col-sm-4 ">
-  <h2 class="h3 mb-3 font-weight-normal text-center">Log in</h2>
-    
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="form-signin text-center">
+<div class='row justify-content-md-center'>
+  <div class="col-sm-4 ">
+    <h2 class="h3 mb-3 font-weight-normal text-center">Log in</h2>
+      
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-signin">
 
-      <div class="form-group">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
-      </div>
-    </div>
-      <% if devise_mapping.rememberable? -%>
-        <div class="checkbox mb-3">
-          <%= f.check_box :remember_me %> Remember me
+        <div class="form-group">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email' %>
         </div>
-      <% end -%>
-      <div class="form-group text-center">
-        <%= f.submit 'Log in', class: 'btn btn-md btn-primary' %>
-        <%= link_to 'Forgot password?', new_user_password_path, class: 'btn btn-md btn-warning' %>
+
+        <div class="form-group">
+          <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
+        </div>
       </div>
-  <% end %>
+        <% if devise_mapping.rememberable? -%>
+          <div class="checkbox mb-3">
+            <%= f.check_box :remember_me %> Remember me
+          </div>
+        <% end -%>
+        <div class="form-group text-center">
+          <%= f.submit 'Log in', class: 'btn btn-md btn-primary' %>
+          <%= link_to 'Forgot password?', new_user_password_path, class: 'btn btn-md btn-warning' %>
+        </div>
+    <% end %>
+  </div>
 </div>
