@@ -5,16 +5,16 @@ en:
         user:
           attributes:
             email:
-              blank: "Please Specify an Email id"
-              taken: "Please use a different Email id"
-              invalid: "Please Specify a valid Email id"
+              blank: "Please Specify an Email"
+              taken: "This Email is already taken. Please use another"
+              invalid: "Please Specify a valid Email"
             password:
               blank: "Please Specify a Password"
               confirmation: "Password does not match"
             password_confirmation:
               blank: "Please Specify a Password Confirmation"
             fullname:
-              blank: "Please Specify Full Nmaes"
+              blank: "Please Specify Fullname"
         pdf:
           attributes:
             name:
