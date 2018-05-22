@@ -1,6 +1,7 @@
 <div class='row justify-content-md-center'>
   <div class="col-sm-4 ">
     <h2 class="h3 mb-3 font-weight-normal text-center">Log in</h2>
+    <%= link_to 'Sign In with Facebook', user_facebook_omniauth_authorize_path, class:'btn btn-md btn-primary' %>
       
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-signin">
