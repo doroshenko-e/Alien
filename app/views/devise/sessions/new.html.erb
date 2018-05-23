@@ -1,5 +1,5 @@
 <div class='row justify-content-md-center'>
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <h2 class="h3 mb-3 font-weight-normal text-center pt-5">Log in</h2>
      
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -21,8 +21,8 @@
           </div>
         <% end -%>
         <div class="form-group text-center">
-          <%= f.submit 'Log in', class: 'btn btn-md btn-primary' %>
-          <%= link_to 'Forgot password?', new_user_password_path, class: 'btn btn-md btn-warning' %>
+          <%= f.submit 'Log in', class: 'btn btn-md btn btn-outline-primary' %>
+          <%= link_to 'Forgot password?', new_user_password_path, class: 'btn btn-md btn-outline-info' %>
         </div>
     <% end %>
     <div class="text-center">
