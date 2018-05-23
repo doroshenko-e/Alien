@@ -8,20 +8,19 @@ class User < ApplicationRecord
   validates :fullname, presence: true, length: {maximum: 50}
 
   def self.find_for_oauth(auth)
-    user = User.where(email: auth.info.email, provider: auth.provider).first
-
-    unless user
-      user = User.create(
-        fullname: auth.info.name,
-        uid:      auth.uid,
-        provider: auth.provider,
-        image:    auth.info.image,
-        email:    auth.info.email,
-        password: Devise.friendly_token[0, 20]
-      )
+    user = User.where(email: auth.info.email).first
+    if user
+      return user
+    else
+      user = User.where(email: auth.info.email, provider: auth.provider).first_or_create do |user|
+        user.fullname = auth.info.name
+        user.uid = auth.uid
+        user.provider = auth.provider
+        user.image = auth.info.image
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0, 20]
+      end
     end
-
-    user
   end
 
   def self.new_with_session(params, session)
