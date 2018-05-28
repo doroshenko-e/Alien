@@ -30,13 +30,7 @@
         </div>
       <% end %>
       <div class="text-center">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text bg-primary"><i class="fab fa-facebook fa-2x"></i>
-            </div>
-          </div>
-          <%= link_to 'Sign In with Facebook', user_facebook_omniauth_authorize_path, class: 'btn btn-lg btn-primary' %>
-        </div>
+        <%= link_to ' Log in', user_facebook_omniauth_authorize_path, class: 'fab fa-facebook fa-lg btn btn-primary' %>
       </div>
     </div>
   </div>
