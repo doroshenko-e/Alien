@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
   <a class="navbar-brand" href="#">Alien</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -9,7 +9,7 @@
       <% if (user_signed_in?)%>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag avatar_url(current_user), class: 'rounded-circle', height: '40' %>&nbsp;
+            <%= image_tag avatar_url(current_user), class: 'rounded-circle', height: '28' %>&nbsp;
             <%= current_user.fullname %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -19,16 +19,23 @@
             <div class="dropdown-divider"></div>
             <%= link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', method: :delete %>
           </div>
+          <li class='nav-item nav-link'>
+            <a href='#'>
+            <i class="far fa-fw fa-envelope"></i>Message</a>
+          </li>
+          <li class='nav-item nav-link'>
+            <a href='#'>
+            <i class="fas fa-home fa-fw"></i>Become A Host</a>
+          </li>
         </li>
       <% else %>
         <li class='nav-item'>
-          <%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline-light' %>
+          <%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline-dark' %>
         </li>
         <li class='nav-item'>
-          <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-outline-light' %>
+          <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-outline-dark' %>
         </li>
       <% end %>
-      <div class="col-sm-1"></div>
     </ul>
   </div>
 </nav>
