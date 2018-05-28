@@ -30,7 +30,9 @@
         </div>
       <% end %>
       <div class="text-center">
-        <%= link_to ' Log in', user_facebook_omniauth_authorize_path, class: 'fab fa-facebook fa-lg btn btn-primary' %>
+        <%= link_to(user_facebook_omniauth_authorize_path, {class: 'btn btn-md btn-primary'}) do %>
+          <i class='fab fa-facebook fa-lg'></i> Sign in with Facebook
+        <% end %>
       </div>
     </div>
   </div>
