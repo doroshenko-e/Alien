@@ -1,14 +1,14 @@
 class Room < ApplicationRecord
   belongs_to :user
 
-  validates :home_type, pesence: true
-  validates :room_type, pesence: true
-  validates :accommodate, pesence: true
-  validates :bedroom, pesence: true
-  validates :bath_room, pesence: true
-  validates :listing, pesence: true, length: {maximum: 50}
-  validates :price, pesence: true
-  validates :summary, pesence: true, length: {maximum: 500}
-  validates :address, pesence: true
+  validates :home_type, presence: true
+  validates :room_type, presence: true
+  validates :accommodate, presence: true
+  validates :bedroom, presence: true
+  validates :bath_room, presence: true
+  validates :listing, presence: true, length: {maximum: 50}
+  validates :price, presence: true
+  validates :summary, presence: true, length: {maximum: 500}
+  validates :address, presence: true
 
 end
