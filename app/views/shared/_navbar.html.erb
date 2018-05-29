@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <a class="navbar-brand" href="#">Alien</a>
+<nav class="navbar navbar-expand-md navbar-light" style="background-color: #ddd;">
+  <%= link_to 'Alien',root_path, class: 'navbar-brand' %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -13,27 +13,41 @@
             <%= current_user.fullname %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item' %>
-            <%= link_to 'Your Tips', class: 'dropdown-item' %>
-            <%= link_to 'Wish Lists', class: 'dropdown-item' %>
+            <%= link_to(edit_user_registration_path, {class: 'dropdown-item'}) do %> 
+              <i class="far fa-user"></i> Edit Profile
+            <% end %>
+            <%= link_to({class: 'dropdown-item'}) do %>
+              <i class="fas fa-glasses"></i> Your Tips
+            <% end %>
+            <%= link_to({class: 'dropdown-item'}) do %>
+              <i class="far fa-list-alt"></i> Wish Lists
+            <% end %>
             <div class="dropdown-divider"></div>
-            <%= link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', method: :delete %>
+            <%= link_to(destroy_user_session_path, {class: 'dropdown-item text-danger', method: :delete }) do %>
+              <i class="fas fa-sign-out-alt"></i> Log out
+            <% end %>
           </div>
           <li class='nav-item nav-link'>
-            <a href='#'>
-            <i class="far fa-fw fa-envelope"></i>Message</a>
+            <%= link_to({class: 'nav-link text-promary'}) do %>
+            <i class="far fa-fw fa-envelope"></i>Message
+            <% end %>
           </li>
-          <li class='nav-item nav-link'>
-            <a href='#'>
+          <li class='nav-item'>
+            <%= link_to(new_room_path, {class: 'nav-link text-info'}) do %>
             <i class="fas fa-home fa-fw"></i>Become A Host</a>
+            <% end %>
           </li>
         </li>
       <% else %>
         <li class='nav-item'>
-          <%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline-dark' %>
+          <%= link_to(new_user_session_path, {class: 'btn btn-outline-dark'}) do %>
+            <i class="fas fa-sign-in-alt"></i> Log in
+          <% end %>
         </li>
         <li class='nav-item'>
-          <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-outline-dark' %>
+          <%= link_to(new_user_registration_path, {class: 'btn btn-outline-dark'}) do %>
+            <i class="fas fa-user-plus"></i> Sign up
+          <% end %>
         </li>
       <% end %>
     </ul>
