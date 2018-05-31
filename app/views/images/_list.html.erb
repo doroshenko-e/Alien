@@ -1,0 +1,10 @@
+<% if @images %>
+	<div class="row">
+		<%= @images.each do |image| %>
+			<div class="col-md-3">
+				<%= image.id %>
+				<%= image_tag(image.image_url(:thumb).to_s) %>	
+			</div>
+		<% end %>
+	</div>
+<% end %>
