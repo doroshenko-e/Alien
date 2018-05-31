@@ -20,29 +20,31 @@ class RoomsController < ApplicationController
     end
   end
 
-  end
+  
 
   def show
   end
 
   def edit
-    if @room.update(room_params)
-      redirect_to @room, notice: "Updated..."
-    else
-      render :edit
+
   end
 
   def update
+    if @room.update(room_params)
+      redirect_to edit_room_path(@room), notice: "Updated..."
+    else
+      render :edit
+    end
   end
 
   private
 
   def room_set
-    @room = Room.find(params{:id})
+    @room = Room.find(params[:id])
   end
 
   def room_params
-    param.require(:room).permit(:home_typeб, :room_type, :accommodate, :bedroom, :bath_room, :listing, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active)
+    params.require(:room).permit(:home_type, :room_type, :accommodate, :bedroom, :bath_room, :listing, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active)
 
   end
 
