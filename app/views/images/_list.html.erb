@@ -1,9 +1,16 @@
 <% if @images %>
 	<div class="row">
-		<%= @images.each do |image| %>
+		<div class="card">
+			<div class="">Place Images</div>
+		</div>
+	</div>
+	<div class="row">
+		<% @images.each do |image| %>
 			<div class="col-md-3">
-				<%= image.id %>
-				<%= image_tag(image.photo_url(:thumb).to_s) %>	
+				<div class="card-body">
+					<%= image_tag(image.photo_url(:thumb).to_s) %>
+				  <%= link_to 'delete', image_path(image.id), method: :delete, data: {confirm: "Are you sure?"} %>
+				</div>
 			</div>
 		<% end %>
 	</div>
