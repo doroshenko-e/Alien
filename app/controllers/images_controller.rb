@@ -1,11 +1,14 @@
 class ImagesController < ApplicationController
 
 	def destroy
-		@photo = Image.find(param[:id])
+		@photo = Image.find(params[:id])
 		room = @photo.room
 		@photo.destroy
-		@photos = Image.where(:room_id room.id)
-		respond_to :js
+
+		respond_to do |format|
+			format.html {redirect_to edit_room_path(room)}
+			format.js {render layout: false }
+		end
 	end
 
 end

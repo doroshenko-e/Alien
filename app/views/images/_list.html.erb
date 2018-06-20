@@ -1,17 +1,19 @@
-<% if @images %>
-	<div class="row">
-		<div class="card">
-			<div class="">Place Images</div>
-		</div>
-	</div>
-	<div class="row">
+<div class="row">
+	<div class="card-head">Place Images</div>
+</div>
+<div class="row">
+	<% if @images %>
 		<% @images.each do |image| %>
 			<div class="col-md-3">
+				<div class="card-head">
+					<%= link_to image, method: :delete, data: {confirm: "Are you sure?"}, class: 'destroy text-danger float-right', remote: true do %>
+				  	<i class="far fa-times-circle fa-lg"></i>
+				  <% end %>
+				</div>
 				<div class="card-body">
 					<%= image_tag(image.photo_url(:thumb).to_s) %>
-				  <%= link_to 'delete', image_path(image.id), method: :delete, data: {confirm: "Are you sure?"} %>
 				</div>
 			</div>
 		<% end %>
-	</div>
-<% end %>
+	<% end %>
+</div>
