@@ -16,7 +16,7 @@ class RoomsController < ApplicationController
     if @room.save
       if params[:images]
         params[:images].each do |image|
-          @room.images.create(image: image)
+          @room.images.create(photo: image)
         end
       end
       redirect_to @room, notice: "Saved..."
@@ -57,7 +57,7 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:home_type, :room_type, :accommodate, :bedroom, :bath_room, :listing, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active)
+    params.require(:room).permit(:home_type, :room_type, :accommodate, :bedroom, :bath_room, :listing, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active,)
 
   end
 
