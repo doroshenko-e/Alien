@@ -1,2 +1,13 @@
 @import "toastr";
 @import "bootstrap";
+
+.text-line-through
+{
+	text-decoration: line-through;
+}
+
+.amenit li
+{
+	margin-bottom: 10px;
+	list-style-type: none;
+}
