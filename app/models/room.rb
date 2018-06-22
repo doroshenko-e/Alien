@@ -2,6 +2,9 @@ class Room < ApplicationRecord
   belongs_to :user
   has_many :images
 
+  geocoded_by :address
+  after_validation :geocode
+
   validates :home_type, presence: true
   validates :room_type, presence: true
   validates :accommodate, presence: true
