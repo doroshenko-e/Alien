@@ -144,7 +144,7 @@
 			</div>
 		</div>
 		<div class="row pt-5 ">
-			<h4>Rooms 10 miles around</h4>
+			<h4>Rooms 10 kilometers around</h4>
 		</div>
 		<div class="row pt-2">
 			<% for room in @room.nearbys(10) %>
@@ -154,7 +154,7 @@
 					</div>
 					<div class="card-body">
 						<%= link_to room.listing, room %><br>
-						(<%= room.distance.round(2) %> Miles away)			
+						(<%= room.distance.round(2) %> km away)			
 					</div>
 				</div>
 			<% end %>
