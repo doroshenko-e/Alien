@@ -16,11 +16,14 @@
             <%= link_to(edit_user_registration_path, {class: 'dropdown-item'}) do %> 
               <i class="far fa-user"></i> Edit Profile
             <% end %>
-            <%= link_to({class: 'dropdown-item'}) do %>
-              <i class="fas fa-glasses"></i> Your Tips
+            <%= link_to(your_trips_path, {class: 'dropdown-item'}) do %>
+              <i class="fas fa-suitcase"></i> Your Trips
             <% end %>
-            <%= link_to({class: 'dropdown-item'}) do %>
-              <i class="far fa-list-alt"></i> Wish Lists
+            <%= link_to(rooms_path, {class: 'dropdown-item'}) do %>
+              <i class="far fa-building"></i> Your Listings
+            <% end %>
+            <%= link_to(your_reservations_path, {class: 'dropdown-item'}) do %>
+              <i class="far fa-list-alt"></i> Your Reservations
             <% end %>
             <div class="dropdown-divider"></div>
             <%= link_to(destroy_user_session_path, {class: 'dropdown-item text-danger', method: :delete }) do %>

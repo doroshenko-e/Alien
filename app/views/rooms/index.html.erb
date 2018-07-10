@@ -2,7 +2,8 @@
 	<div class="col-md-3">
 		<div class="nav flex-column nav-pills">
 			<%= link_to 'Your Listings', rooms_path, class: "nav-link active" %>
-			<%= link_to 'Your Reservations', rooms_path, class: "nav-link" %>
+			<%= link_to 'Your Reservations', your_reservations_path, class: "nav-link" %>
+			<%= link_to 'Your Trips', your_trips_path, class: "nav-link" %>
 		</div>
 	</div>
 	<div class="col-md-9">
@@ -14,7 +15,7 @@
 				<% @rooms.each do |room| %>
 				<div class="row">
 					<div class="col-md-2">
-						<%= image_tag (room.images.first.photo_url(:preview).to_s) if room.images.length > 0 %>
+						<%= image_tag room.images.first.photo_url(:preview).to_s if room.images.length > 0 %>
 					</div>
 					<div class="col-md-7">
 						<h3><%= room.listing %></h3>
