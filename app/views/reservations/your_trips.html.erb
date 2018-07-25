@@ -17,14 +17,14 @@
 					<div class="col-md-2">
 						<%= trip.start_date.strftime('%v') %>
 					</div>
-					<div class="col-md-6 d-block w-100 img-fluid">
+					<div class="col-md-6">
 						<%= link_to room_path(trip.room) do %>
 							<%= image_tag trip.room.images.first.photo_url(:thumb).to_s if trip.room.images.length > 0 %>
 						<% end %>
 					</div>
 					<div class="col-md-2">
 						<%= link_to user_path(trip.room.user) do %>
-							<%= image_tag avatar_url(trip.room.user), class: "img-fluid" %>
+							<%= image_tag avatar_url(trip.room.user) %>
 						<% end %>
 					</div>
 					<div class="col-md-2">
