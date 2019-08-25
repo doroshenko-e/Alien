@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="card-head">Place Images</div>
+</div>
+<div class="row">
+	<% if @images %>
+		<% @images.each do |image| %>
+			<div class="col-md-3">
+				<div class="card-head">
+					<%= link_to image, method: :delete, data: {confirm: "Are you sure?"}, class: 'destroy text-danger float-right', remote: true do %>
+				  	<i class="far fa-times-circle fa-lg" title="Delete image" ></i>
+				  <% end %>
+				</div>
+				<div class="card-body float-right">
+					<%= image_tag(image.photo_url(:thumb).to_s) %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+</div>

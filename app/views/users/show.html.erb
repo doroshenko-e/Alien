@@ -1,8 +1,26 @@
-<div class="row py-5">
-	<div class="col-md-4">
-		<%= image_tag avatar_url(@user) %>
+<div class="row">
+	<div class="col-md-2">
+		<%= image_tag avatar_url(@user), class: "img-fluid" %>
+		<div class="row">
+			<%= @user.description %>
+		</div>
 	</div>
-	<div class="col-md-8">
-		<%= @user.fullname %>
+	<div class="col-md-10">
+		<h4><%= @user.fullname %></h4>
+		<h5>Listings (<%= @rooms.length %>)</h5>
+		<div class="row">
+			<% @rooms.each do |room| %>
+				<div class="col-md-3">
+					<div class="card">
+						<div class="card-head">
+							<%= image_tag room.images[0].photo_url(:large), class: "img-fluid" %>
+						</div>
+						<div class="card-body">
+							<%= link_to room.listing, room_path %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
 	</div>
 </div>

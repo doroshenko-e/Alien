@@ -1,2 +1,33 @@
 @import "toastr";
 @import "bootstrap";
+
+.text-line-through
+{
+	text-decoration: line-through;
+}
+
+.amenit li
+{
+	margin-bottom: 10px;
+	list-style-type: none;
+}
+
+.reservation-table td {
+	width:100%;
+	border: 1px solid #faa;
+	padding: 5px;
+	
+	margin-bottom: 10px;
+}
+
+.price-tag {
+	background: #555;
+	color: #fff;
+	font-size: 20px;
+	padding: 15px;
+	margin-bottom: 10px;
+}
+
+.img-fluid {
+	width: 100% \9;
+}

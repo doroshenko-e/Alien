@@ -2,7 +2,7 @@
 	<div class="card-header bg-secondary text-white">
 		Tell Us About Your Place
 	</div>
-	<%= form_for @room do |f| %>
+	<%= form_for @room, html: {multipart: true} do |f| %>
 		<div class="card-body">
 			<div class="row">
 				<div class="col-md-4">
@@ -98,6 +98,15 @@
 				</div>
 			</div>
 		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="form-group">
+					<%= file_field_tag 'images[]', type: :file, multiple: true %>
+				</div>
+			</div>
+				<%= render 'images/list' %>
+		</div>
+	
 		<div class="card-body">
 			<div class="row">
 				<div class="col-md-4">

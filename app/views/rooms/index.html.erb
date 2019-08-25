@@ -1,2 +1,33 @@
-<h1>Rooms#index</h1>
-<p>Find me in app/views/rooms/index.html.erb</p>
+<div class="row">
+	<div class="col-md-3">
+		<div class="nav flex-column nav-pills">
+			<%= link_to 'Your Listings', rooms_path, class: "nav-link active" %>
+			<%= link_to 'Your Reservations', your_reservations_path, class: "nav-link" %>
+			<%= link_to 'Your Trips', your_trips_path, class: "nav-link" %>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card">
+			<div class="card-head">
+				Listings
+			</div>
+			<div class="card-body">
+				<% @rooms.each do |room| %>
+				<div class="row">
+					<div class="col-md-5">
+						<%= image_tag room.images.first.photo_url(:thumb).to_s if room.images.length > 0 %>
+					</div>
+					<div class="col-md-5">
+						<h4><%= room.listing %></h4>
+					</div>
+					<div class="col-md-2">
+						<%= link_to "Update", edit_room_path(room), class: "btn btn-danger" %>
+					</div>
+				</div>
+				<hr/>
+				<% end %>
+			</div>
+		</div>
+		
+	</div>
+</div>

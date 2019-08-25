@@ -1,2 +1,164 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<div class="card">
+	<div class="card-body">
+		<!-- Image -->
+		<div class="row pb-3 justify-content-md-center">
+			<div class="col-md-4">
+				<%= image_tag (@room.images.first.photo_url.to_s), class: "img-fluid" if @room.images.length > 0 %>
+			</div>
+		</div>
+		<!-- info -->
+		<div class="row pb-3">
+			<div class="col-md-8">
+				<div class="row ">
+					<div class="col-md-3 py-3 text-center" style="background-color: #ddd">
+						<%= image_tag avatar_url(@room.user), class: 'rounded-circle', height: '78' %><br><br>
+						<%= @room.user.fullname %>
+					</div>
+					<div class="col-md-9">
+						<h4><%= @room.listing %></h4>
+						<%= @room.address %>
+						
+						<div class="row pt-2 text-center text-dark">
+							<div class="col-sm-3">
+								<i class="fa fa-home fa-2x"></i>
+								<br> 
+								<%= @room.home_type %>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-users fa-2x"></i>
+								<br>
+								<%= @room.accommodate %> <%= @room.accommodate >1? "Guests" : "Guest" %>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-bed fa-2x"></i>
+								<br>
+								<%= @room.bedroom %> <%= @room.bedroom >1? "Bedrooms" : "Bedroom" %>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-shower fa-2x"></i>
+								<br>
+								<%= @room.bath_room %> <%= @room.bath_room >1? "Bathrooms" : "Bathroom" %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Reservation form -->
+			<div class="col-md-4">
+				<%= render 'reservations/form' %>
+			</div>
+		</div>
+
+		<!-- About -->
+		<div class="col-md-12 pb-3">
+			<h3>About this Listing</h3>
+			<p><%= @room.summary %></p>
+		</div>
+
+		<!-- Amentities -->
+
+		<div class="row">
+			<div class="col-md-2">
+				<p>Amenities</p>
+			</div>
+			<div class="col-md-10">
+				<div class="row">
+					<div class="col-md-6">
+						<ul class="amenit text-success">
+							<li class="<%= 'text-line-through text-danger' if !@room.is_tv %>" >TV</li>
+							<li class="<%= 'text-line-through text-danger' if !@room.is_internet %>" >Internet</li>
+							<li class="<%= 'text-line-through text-danger' if !@room.is_kitchen %>" >Kitchen</li>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<ul class="amenit text-success">
+							<li class="<%= 'text-line-through text-danger' if !@room.is_heating %>" >Heating</li>
+							<li class="<%= 'text-line-through text-danger' if !@room.is_air %>" >Air Conitioning</li>
+						</ul>
+					</div>
+				</div>				
+			</div>
+		</div>
+
+		<!-- Carousel -->
+		<div class="row py-5 justify-content-md-center">
+			<div class="col-md-10">
+				<div id="demo" class="carousel slide" data-ride="carousel">
+					<!-- Indicators -->
+					<% if @images %>
+  					<ul class="carousel-indicators">
+  						<% @images.each do |image| %>
+						    <li data-target="#demo" data-slide-to="<%= image.id-1 %>"></li>
+    					<% end %>
+  					</ul>
+  				<% end %>
+
+  				<!-- The slideshow -->
+ 					 <div class="carousel-inner">
+  					<% if @images %>
+ 						 	<% @images.each do |image| %>
+  						  <div class="carousel-item <%= 'active' if image.id == @images[0].id %> ">
+									<%= image_tag(image.photo_url.to_s, class: "d-block w-100" ) %>
+    						</div>
+    				  <% end %>
+				  	<% end %>
+				  </div>
+
+					  <!-- Left and right controls -->
+				  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+				    <span class="carousel-control-prev-icon"></span>
+				  </a>
+				  <a class="carousel-control-next" href="#demo" data-slide="next">
+				    <span class="carousel-control-next-icon"></span>
+				  </a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Google maps with geocode -->
+		<div class="row">
+			<div class="col-md-12">
+				<div id="map"></div>
+				<style>
+      /* Set the size of the div element that contains the map */
+      		#map {
+        		height: 400px;  /* The height is 400 pixels */
+        		width: 100%;  /* The width is the width of the web page */
+       		}
+    		</style>
+				<script>
+					// Initialize and add the map
+					function initMap() {
+					  // The location of Uluru
+					  var uluru = {lat: <%= @room.latitude %>, lng: <%= @room.longitude %>};
+					  // The map, centered at Uluru
+				  	var map = new google.maps.Map(document.getElementById('map'), {zoom: 15, center: uluru});
+				  	// The marker, positioned at Uluru
+				  	var marker = new google.maps.Marker({position: uluru, map: map});
+					}
+ 			  </script>
+ 			  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBn2bXxkU5OtuUtQtsLUMQVuwRZd9RoR8U&callback=initMap">
+    		</script>
+			</div>
+		</div>
+		<div class="row pt-5 ">
+			<h5>Rooms 20 kilometers around</h5>
+		</div>
+		<div class="row pt-2">
+			<% if @room.nearbys.present? %>
+				<% for room in @room.nearbys(20) %>
+					<div class="col-md-4">
+						<div class="card-head">
+							<%= image_tag (room.images.first.photo_url(:thumb).to_s), class: "img-fluid" if @room.images.length > 0 %>
+						</div>
+						<div class="card-body">
+							<%= link_to room.listing, room %><br>
+							(<%= room.distance.round(2) %> km away)			
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>
