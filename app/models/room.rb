@@ -4,7 +4,7 @@ class Room < ApplicationRecord
   has_many :reservations
 
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   validates :home_type, presence: true
   validates :room_type, presence: true

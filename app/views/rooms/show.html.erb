@@ -47,7 +47,6 @@
 			<!-- Reservation form -->
 			<div class="col-md-4">
 				<%= render 'reservations/form' %>
-				
 			</div>
 		</div>
 
@@ -84,7 +83,7 @@
 
 		<!-- Carousel -->
 		<div class="row py-5 justify-content-md-center">
-			<div class="col-md-8">
+			<div class="col-md-10">
 				<div id="demo" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
 					<% if @images %>
@@ -144,19 +143,21 @@
 			</div>
 		</div>
 		<div class="row pt-5 ">
-			<h4>Rooms 10 kilometers around</h4>
+			<h5>Rooms 20 kilometers around</h5>
 		</div>
 		<div class="row pt-2">
-			<% for room in @room.nearbys(10) %>
-				<div class="col-md-4">
-					<div class="card-head">
-						<%= image_tag (room.images.first.photo_url(:thumb).to_s), class: "img-fluid" if @room.images.length > 0 %>
+			<% if @room.nearbys.present? %>
+				<% for room in @room.nearbys(20) %>
+					<div class="col-md-4">
+						<div class="card-head">
+							<%= image_tag (room.images.first.photo_url(:thumb).to_s), class: "img-fluid" if @room.images.length > 0 %>
+						</div>
+						<div class="card-body">
+							<%= link_to room.listing, room %><br>
+							(<%= room.distance.round(2) %> km away)			
+						</div>
 					</div>
-					<div class="card-body">
-						<%= link_to room.listing, room %><br>
-						(<%= room.distance.round(2) %> km away)			
-					</div>
-				</div>
+				<% end %>
 			<% end %>
 		</div>
 	</div>
